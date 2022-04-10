@@ -1,8 +1,8 @@
 # StudentGradeManagementSystem
-Uydulama veritabanı içerisindek itablolar şu şekildedir.
-![alt text]![Database](https://user-images.githubusercontent.com/52373489/162598212-bb7374da-af44-42a9-aaa1-5124fb4c8307.png)
+Uygulamanın veritabanı tabloları şu şekildedir.
+![Database](https://user-images.githubusercontent.com/52373489/162598212-bb7374da-af44-42a9-aaa1-5124fb4c8307.png)
 
-Uygulama içerisindeki yazılmış servisleri test etmek için Swagger aracını kullandım. Swagger içerisinde test edilebilecek servisler şu şekildedir.
+Uygulama içerisinde yazılmış servisleri test etmek için Swagger aracını kullandım. Swagger içerisinde test edilebilecek servisler şu şekildedir.
 **Kırmızı ile işaretlenmiş servisler tam olarak istenileni vermemektedir.
 ![Swagger](https://user-images.githubusercontent.com/52373489/162598258-62417e9d-8196-4fb6-b803-da23b281c9f9.png)
 
