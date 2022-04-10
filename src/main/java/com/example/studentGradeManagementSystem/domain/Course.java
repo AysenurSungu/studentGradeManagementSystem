@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,31 +16,33 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class Course {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long courseId;
-
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 10)
-    private String courseCode;
-
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 40)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String courseName;
+    private String courseCode;
+    private Long yearId;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "course_student", joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
+    private List<Student> students = new ArrayList<>();
+    @OneToMany
+    private List<Exam> exams = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "examId", nullable = false)
-    private List<Exam> courseExams;
+   public int scoreAverage(Exam exam){
+        var firstScore = exams.indexOf(1);
+        var secondScore = exams.indexOf(2);
+        var average = (firstScore + secondScore)/2;
+        return average;
+    }
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private CourseStatus status;
-
-    @NotBlank
-    @Column(nullable = false)
-    private String score;
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+    public void addExam(Exam exam){exams.add(exam);}
+    public void deleteStudent(Student student) {
+        students.remove(student);
+    }
 
 }

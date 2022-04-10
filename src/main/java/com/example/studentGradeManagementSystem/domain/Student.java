@@ -1,10 +1,10 @@
 package com.example.studentGradeManagementSystem.domain;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,24 +14,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class Student {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String studentId;
-
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 11)
+    @GeneratedValue
+    private Long id;
+    private String fullname;
     private String schoolNumber;
 
-    @NotBlank
-    @Column(nullable = false, length = 40)
-    private String fullname;
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Course> courses = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false)
-    private List<Course> takenCourses;
 
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
+    public void removeCourse(Course course) {
+        courses.remove(course);
+    }
 
 }

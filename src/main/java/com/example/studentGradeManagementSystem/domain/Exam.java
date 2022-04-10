@@ -4,8 +4,13 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "exams")
@@ -14,16 +19,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EntityListeners(AuditingEntityListener.class)
 public class Exam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-
-    @NotBlank
-    @Column
-    private Integer score;
-
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "course_id", updatable = false)
+    private Course course;
+    private Long yearId;
+    private Long studentId;
+    private String schoolNumber;
+    @Max(100)
+    @Min(0)
+    private int score;
 
 }

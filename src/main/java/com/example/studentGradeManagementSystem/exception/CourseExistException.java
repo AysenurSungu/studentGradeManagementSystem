@@ -1,14 +1,14 @@
 package com.example.studentGradeManagementSystem.exception;
 
 public class CourseExistException extends RuntimeException{
-    private String messageId;
+    private Long messageId;
 
-    public CourseExistException(String message, String messageId) {
+    public CourseExistException(String message, Long messageId) {
         super(message);
         this.messageId = messageId;
     }
 
-    public String getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
