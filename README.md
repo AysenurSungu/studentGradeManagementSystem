@@ -6,7 +6,7 @@ Uygulama içerisinde yazılmış servisleri test etmek için Swagger aracını k
 **Kırmızı ile işaretlenmiş servisler tam olarak istenileni vermemektedir.
 ![Swagger](https://user-images.githubusercontent.com/52373489/162598258-62417e9d-8196-4fb6-b803-da23b281c9f9.png)
 
-Görevde yapılması istenen özellikler + olarak işaretlenmiştir.
+Görevde yapılması istenen özellikler işaretlenmiştir.
 1) Object Oriented Skills Set
 + + There is a school with 3 students in it. 
 + + Theese 3 course are being taught in this school: Mathematics, Physics, Chemistry
